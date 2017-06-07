@@ -1,7 +1,9 @@
 var restify = require('restify');
 var plugins = require('restify-plugins');
 
-var taskService = require('./task');
+var router = require('./router');
+var config = require('./config');
+var mongoHelper = require("./util/mongoUtils")
 
 const server = restify.createServer({
   name: 'my tools',
@@ -12,9 +14,16 @@ server.use(plugins.acceptParser(server.acceptable));
 server.use(plugins.queryParser());
 server.use(plugins.bodyParser());
 
-server.listen(8888, function () {
+server.listen(config.port, function () {
   console.log('%s listening at %s', server.name, server.url);
+
+  router.registerApi(server);
 });
 
-
-taskService.start(server);
+mongoHelper.connect(function(error){
+  if (error) throw error;
+});
+server.on('close', function(errno) {
+  mongoHelper.disconnect(function(err) {
+  });
+});

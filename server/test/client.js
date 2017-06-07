@@ -13,10 +13,10 @@ var client = clients.createJsonClient({
 });
 
 
-client.post('/task/save_group.json', {id: 1, name: 'test'}, function(err, req, res, obj) {
-  console.log(obj);
-});
-
-// client.get('/task/list_groups.json', function(err, req, res, obj) {
+// client.post('/task/save_group.json', {id: 1, name: 'test'}, function(err, req, res, obj) {
 //   console.log(obj);
 // });
+
+client.post('/task/list_groups.json', function(err, req, res, obj) {
+  console.log(obj);
+});
