@@ -49,7 +49,7 @@ export const queryItems = ({commit}, groupId) => {
 export const saveItem = ({dispatch, commit}, item) => {
   return new Promise((resolve, reject) => {
     utils.requestPost('/task/save_item.json', item, (d) => {
-      dispatch('queryItems')
+      dispatch('queryItems', item.groupId)
       resolve()
     }, (res) => {
       reject(res)
@@ -67,7 +67,7 @@ export const saveItem = ({dispatch, commit}, item) => {
 export const deleteItem = ({dispatch, commit}, item) => {
   return new Promise((resolve, reject) => {
     utils.requestPost('/task/delete_task.json', item, (d) => {
-      dispatch('queryItems')
+      dispatch('queryItems', item.groupId)
       resolve(d)
     }, (res) => {
       reject(res)
@@ -85,7 +85,7 @@ export const deleteItem = ({dispatch, commit}, item) => {
 export const finishItem = ({dispatch, commit}, item) => {
   return new Promise((resolve, reject) => {
     utils.requestPost('/task/finish_task.json', item, (d) => {
-      dispatch('queryItems')
+      dispatch('queryItems', item.groupId)
       resolve(d)
     }, (res) => {
       reject(res)
