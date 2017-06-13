@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 // 任务分组
 var TaskGroupSchema = new Schema({
   id: Number,
+  userId: Number,
   name: String,
   taskCount: Number,
   createTime: { type: Date, default: Date.now },
@@ -14,6 +15,7 @@ var TaskGroupSchema = new Schema({
 // 任务列表
 var TaskItemSchema = new Schema({
   id: Number,
+  userId: Number,
   title: String,
   groupId: Number,
   finished: Boolean,

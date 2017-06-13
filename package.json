@@ -15,9 +15,12 @@
   },
   "dependencies": {
     "animate.css": "^3.5.2",
+    "bluebird": "^3.5.0",
     "bootstrap-vue": "^0.14.0",
     "element-theme": "^0.7.1",
     "element-ui": "^1.2.0",
+    "express-session": "^1.15.3",
+    "log4js": "^1.1.1",
     "mongoose": "^4.9.8",
     "node.extend": "^2.0.0",
     "normalize.css": "^5.0.0",

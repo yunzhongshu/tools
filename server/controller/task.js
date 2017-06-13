@@ -2,6 +2,8 @@ var mongoHelper = require('../util/mongoUtils');
 var TaskGroupModel = require('../model/task').Scheme('TaskGroup').model;
 var TaskItemModel = require('../model/task').Scheme('TaskItem').model;
 var DBError = require('../common/my_error').DBError;
+var logger = require('log4js').getLogger();
+
 
 /**
  * 保存分组
@@ -14,20 +16,23 @@ exports.saveGroup = function (req, res, next) {
   mongoHelper.incId('taskGroup').then(function(id) {
     new TaskGroupModel({
       id: id,
+      userId: 1,
       name: groupName,
       taskCount: 0,
-      createTime: Date,
-      updateTime: Date,
+      createTime: Date.now(),
+      updateTime: Date.now(),
       status: 'enabled'
     }).save(function (err) {
       if (err) {
-        next(new DBError('保存分组失败'));
+        logger.error(err)
+        return next(new DBError('保存分组失败'));
       }
       res.send(true);
       next();
     });
   }).catch(function (err) {
-    next(new DBError('分配id失败'));
+    logger.error(err)
+    return next(new DBError('分配id失败'));
   });
 };
 
@@ -39,9 +44,11 @@ exports.saveGroup = function (req, res, next) {
  */
 exports.listGroups = function (req, res, next) {
   var queryParam = req.body;
+
   TaskGroupModel.find(queryParam).exec(function (err, list) {
     if (err) {
-      next(new DBError())
+      logger.error(err)
+      return next(new DBError())
     }
     res.send(list);
     next();
@@ -64,6 +71,19 @@ exports.updateGroupStatus = function (req, res, next) {
 }
 
 /**
+ * 更新
+ * @param groupId
+ */
+var updateGroupTaskCount = function (groupId, res, next) {
+  TaskItemModel.count({groupId: groupId, finished: false, deleted: false}).exec(function (err, count) {
+    TaskGroupModel.update({id: groupId}, {$set: {taskCount: count}}).exec(function (err, number) {
+      res.send(number)
+      next();
+    })
+  })
+}
+
+/**
  * 保存任务
  * @param req
  * @param res
@@ -75,6 +95,7 @@ exports.saveItem = function (req, res, next) {
   mongoHelper.incId('taskItem').then(function(id) {
     new TaskItemModel({
       id: id,
+      userId: 1,
       title: title,
       groupId: groupId,
       finished: false,
@@ -83,13 +104,14 @@ exports.saveItem = function (req, res, next) {
       updateTime: Date.now()
     }).save(function (err) {
       if (err) {
-        next(new DBError('保存任务失败'))
+        logger.error(err)
+        return next(new DBError('保存任务失败'))
       }
-      res.send(true);
-      next();
+      updateGroupTaskCount(groupId, res, next)
     });
   }).catch(function (err) {
-    next(new DBError('分配id失败'));
+    logger.error(err)
+    return next(new DBError('分配id失败'));
   });
 };
 
@@ -103,7 +125,8 @@ exports.listItems = function (req, res, next) {
   var queryParam = req.body;
   TaskItemModel.find(queryParam).exec(function (err, list) {
     if (err) {
-      next(DBError())
+      logger.error(err)
+      return next(DBError())
     }
     res.send(list);
     next();
@@ -117,12 +140,13 @@ exports.listItems = function (req, res, next) {
  * @param next
  */
 exports.finishItem = function (req, res, next) {
+  var id = req.body.id;
   TaskItemModel.update({id: id}, {$set: {finished: true}}).exec(function (err, number) {
     if (err) {
-      next(new DBError());
+      logger.error(err)
+      return next(new DBError());
     }
-    res.send(number);
-    next();
+    updateGroupTaskCount(groupId, res, next)
   })
 };
 
@@ -133,11 +157,13 @@ exports.finishItem = function (req, res, next) {
  * @param next
  */
 exports.deleteItem = function (req, res, next) {
+  var id = req.body.id;
+  var groupId = req.body.groupId;
   TaskItemModel.update({id: id}, {$set: {deleted: true}}).exec(function (err, number) {
     if (err) {
-      next(new DBError());
+      logger.error(err)
+      return next(new DBError());
     }
-    res.send(number);
-    next();
+    updateGroupTaskCount(groupId, res, next)
   })
 };

@@ -8,7 +8,7 @@
       <li v-for="(taskGroup, index) in getGroups" @click="showGroupItem(taskGroup)">
         <icon name="list-ul"></icon>
         <span>{{taskGroup.name}}</span>
-        <span class="subNum">0</span>
+        <span class="subNum">{{taskGroup.taskCount}}</span>
       </li>
     </ul>
     <div class="create-group">
@@ -17,10 +17,10 @@
         <i class="el-icon-minus" v-if="isAppendNew"></i>创建清单
       </el-button>
       <el-input v-show="isAppendNew"
-        size="large"
-        v-focus="isAppendNew"
-        placeholder="创建清单"
-        v-model="newTaskGroup">
+                size="large"
+                v-focus="isAppendNew"
+                placeholder="创建清单"
+                v-model="newTaskGroup">
         <el-button slot="append" icon="plus" @click="save()"></el-button>
       </el-input>
     </div>
@@ -30,51 +30,50 @@
 
 </template>
 <script>
-import { focus } from '@/assets/js/el-focus'
-import {mapGetters, mapActions} from 'vuex'
+  import { focus } from '@/assets/js/el-focus'
+  import {mapGetters, mapActions} from 'vuex'
 
-export default {
-  data () {
-    return {
-      isAppendNew: false,
-      newTaskGroup: ''
-    }
-  },
-  computed: {
-    ...mapGetters(['getGroups'])
-  },
-  mounted () {
-    this.queryGroups().then(d => {
-    }, d => {
-      this.$notify.error({
-        title: '失败',
-        message: '加载任务分组失败'
-      })
-    })
-  },
-  methods: {
-    ...mapActions(['queryGroups', 'saveGroup']),
-    createGroup () {
-      this.isAppendNew = !this.isAppendNew
+  export default {
+    data () {
+      return {
+        isAppendNew: false,
+        newTaskGroup: ''
+      }
     },
-    save () {
-      this.saveGroup({
-        name: this.newTaskGroup
-      }).then(() => {
-        this.$notify.success('保存成功')
-        this.isAppendNew = false
-      }, (d) => {
-        this.$notify.error('保存失败,msg=' + d.msg)
+    computed: {
+      ...mapGetters(['getGroups'])
+    },
+    mounted () {
+      this.queryGroups().then(d => {
+      }, d => {
+        this.$notify.error({
+          title: '失败',
+          message: '加载任务分组失败'
+        })
       })
     },
-    showGroupItem (group) {
-      this.$router.push({name: 'taskItem', params: {groupId: group.id}})
+    methods: {
+      ...mapActions(['queryGroups', 'saveGroup']),
+      createGroup () {
+        this.isAppendNew = !this.isAppendNew
+      },
+      save () {
+        this.saveGroup({
+          name: this.newTaskGroup
+        }).then(() => {
+          this.$notify.success('保存成功')
+          this.isAppendNew = false
+        }, (d) => {
+        })
+      },
+      showGroupItem (group) {
+        this.$router.push({name: 'taskItem', params: {groupId: group.id}})
+      }
+    },
+    directives: {
+      focus: focus
     }
-  },
-  directives: {
-    focus: focus
   }
-}
 </script>
 <style lang="scss" rel="stylesheet/scss">
   @import "../../assets/css/base.scss";

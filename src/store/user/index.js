@@ -3,10 +3,7 @@ import * as actions from './actions'
 import mutations from './mutations'
 
 const state = {
-  groups: [],
-  // groupId->items
-  groupUnFinishedItems: {},
-  currentUnFinishedItems: []
+  userInfo: {id: 1}
 }
 
 export default {

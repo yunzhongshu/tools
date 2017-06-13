@@ -12,10 +12,13 @@ import './assets/css/base.scss'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/zh-CN'
 
+import VueUtils from './assets/js/vue-utils'
+
 Vue.use(VueResource)
 Vue.use(ElementUI, { locale })
 
 Vue.use(VueResource)
+Vue.use(VueUtils)
 
 // icon import
 import 'vue-awesome/icons/list-ul'

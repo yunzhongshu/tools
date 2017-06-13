@@ -1,15 +1,12 @@
-import Vue from 'vue'
 import utils from '@/assets/js/utils'
 
 export const queryGroups = ({commit}) => {
   return new Promise((resolve, reject) => {
-    Vue.http.get('/task/list_groups.json').then(d => {
-      console.log(d)
-      let data = utils.getResponseData(d)
-      commit('QUERY_GROUPS', data)
+    utils.requestPost('/task/list_groups.json', {status: 'enabled'}, (d) => {
+      commit('QUERY_GROUPS', d)
       resolve()
-    }, d => {
-      reject()
+    }, (res) => {
+      reject(res)
     })
   })
 }
@@ -25,15 +22,26 @@ export const saveGroup = ({dispatch, commit}, group) => {
   })
 }
 
-export const queryItems = ({commit}) => {
+export const checkAndQueryItems = ({dispatch, commit, state}, groupId) => {
+  let items = state.groupUnFinishedItems[groupId]
+  if (items) {
+    commit('CURRENT_UNFINISHED_ITEMS', items)
+  } else {
+    dispatch('queryItems', groupId)
+  }
+}
+
+export const queryItems = ({commit}, groupId) => {
   return new Promise((resolve, reject) => {
-    Vue.http.get('/task/list_items.json').then(d => {
-      console.log(d)
-      let data = utils.getResponseData(d)
-      commit('QUERY_GROUPS', data)
+    utils.requestPost('/task/list_items.json', {groupId: groupId, finished: false, deleted: false}, (d) => {
+      commit('SAVE_UNFINISHED_ITEMS', {
+        groupId: groupId,
+        items: d
+      })
+      commit('CURRENT_UNFINISHED_ITEMS', d)
       resolve()
-    }, d => {
-      reject()
+    }, (res) => {
+      reject(res)
     })
   })
 }
@@ -43,6 +51,42 @@ export const saveItem = ({dispatch, commit}, item) => {
     utils.requestPost('/task/save_item.json', item, (d) => {
       dispatch('queryItems')
       resolve()
+    }, (res) => {
+      reject(res)
+    })
+  })
+}
+
+/**
+ * 删除任务项目
+ * @param dispatch
+ * @param commit
+ * @param id
+ * @returns {Promise}
+ */
+export const deleteItem = ({dispatch, commit}, item) => {
+  return new Promise((resolve, reject) => {
+    utils.requestPost('/task/delete_task.json', item, (d) => {
+      dispatch('queryItems')
+      resolve(d)
+    }, (res) => {
+      reject(res)
+    })
+  })
+}
+
+/**
+ * 完成任务项目
+ * @param dispatch
+ * @param commit
+ * @param id
+ * @returns {Promise}
+ */
+export const finishItem = ({dispatch, commit}, item) => {
+  return new Promise((resolve, reject) => {
+    utils.requestPost('/task/finish_task.json', item, (d) => {
+      dispatch('queryItems')
+      resolve(d)
     }, (res) => {
       reject(res)
     })

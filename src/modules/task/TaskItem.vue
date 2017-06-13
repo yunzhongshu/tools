@@ -15,10 +15,11 @@
       </el-input>
     </div>
     <ul class="item-list">
-      <li v-for="(taskItem, index) in taskItems">
-        <span>{{taskItem.name}}</span>
+      <li v-for="(taskItem, index) in getCurrentUnFinishedItems">
+        <span>{{taskItem.title}}</span>
         <span class="finish-check">
-          <el-checkbox v-model="finish"></el-checkbox>
+          <el-checkbox v-model="taskItem.finished" @change="changeFinished(taskItem)" title="完成任务"></el-checkbox>
+          <i class="el-icon-close task-delete" @click="deleteTask(taskItem)" title="删除任务"></i>
         </span>
       </li>
     </ul>
@@ -26,18 +27,50 @@
   </div>
 </template>
 <script>
+import { focus } from '@/assets/js/el-focus'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data () {
     return {
-      taskItems: [],
-      newTaskItem: ''
+      newTaskItem: '',
+      groupId: this.$route.params['groupId']
     }
   },
+  computed: {
+    ...mapGetters(['getCurrentUnFinishedItems'])
+  },
+  mounted () {
+    this.checkAndQueryItems(this.groupId)
+  },
   methods: {
+    ...mapActions(['checkAndQueryItems', 'saveItem', 'deleteItem', 'finishItem']),
     save () {
-      this.taskItems.push({name: this.newTaskItem})
+      this.saveItem({
+        groupId: this.groupId,
+        title: this.newTaskItem
+      }).then((d) => {
+        this.$notify.success('保存成功')
+      }, (d) => {
+      })
+    },
+    changeFinished (task) {
+      this.finishItem(task).then((d) => {
+        this.$notify.success('操作成功')
+      }, (d) => {
+        this.$notify.success('操作失败')
+      })
+    },
+    deleteTask (task) {
+      this.deleteItem(task).then((d) => {
+        this.$notify.success('删除成功')
+      }, (d) => {
+        this.$notify.success('删除失败')
+      })
     }
+  },
+  directives: {
+    focus: focus
   }
 }
 </script>
@@ -98,7 +131,12 @@ export default {
 
         .finish-check {
           float: right;
-          margin-right: 3rem;
+          margin-right: 1rem;
+        }
+        .task-delete {
+          color: $text-gray;
+          margin-left: 2rem;
+          cursor: pointer;
         }
 
       }

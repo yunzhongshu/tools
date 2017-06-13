@@ -39,7 +39,7 @@ var UTILS = {
     return theRequest
   },
   getResponseData (response) {
-    return response.body.data
+    return response.body
   },
   copyObj (dest, src) {
     if (src) {
@@ -76,14 +76,15 @@ var UTILS = {
       if (data) {
         resolve(data)
       } else {
-        reject(d)
+        reject(data)
       }
     }, d => {
+      let data = this.getResponseData(d)
       Notification.error({
         title: 'error',
-        message: 'code=' + d.status + ',message=' + d.statusText
+        message: 'code=' + data.code + ',message=' + data.message
       })
-      reject(d)
+      reject(data)
     })
   },
   requestGet (url, options, resolve, reject) {
@@ -92,10 +93,11 @@ var UTILS = {
       if (data) {
         resolve(data)
       } else {
-        reject(d)
+        reject(data)
       }
     }, d => {
-      reject(d)
+      let data = this.getResponseData(d)
+      reject(data)
     })
   },
   /**
