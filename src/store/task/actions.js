@@ -46,6 +46,22 @@ export const queryItems = ({commit}, groupId) => {
   })
 }
 
+/**
+ * 查询已完成的任务
+ * @param commit
+ * @param groupId
+ * @returns {Promise}
+ */
+export const queryFinishItems = ({commit}, groupId) => {
+  return new Promise((resolve, reject) => {
+    utils.requestPost('/task/list_items.json', {groupId: groupId, finished: true, deleted: false}, (d) => {
+      resolve(d)
+    }, (res) => {
+      reject(res)
+    })
+  })
+}
+
 export const saveItem = ({dispatch, commit}, item) => {
   return new Promise((resolve, reject) => {
     utils.requestPost('/task/save_item.json', item, (d) => {

@@ -32,6 +32,7 @@
 <script>
   import { focus } from '@/assets/js/el-focus'
   import {mapGetters, mapActions} from 'vuex'
+  import localDB from '@/localdb/db'
 
   export default {
     data () {
@@ -51,6 +52,15 @@
           message: '加载任务分组失败'
         })
       })
+//      localDB.openDatabase([
+//        {
+//          name: 'table1',
+//          keyPath: 'id',
+//          updateFunc () {
+//            console.log('success update callback.')
+//          }
+//        }
+//      ])
     },
     methods: {
       ...mapActions(['queryGroups', 'saveGroup']),

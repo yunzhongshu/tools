@@ -123,7 +123,7 @@ exports.saveItem = function (req, res, next) {
  */
 exports.listItems = function (req, res, next) {
   var queryParam = req.body;
-  TaskItemModel.find(queryParam).exec(function (err, list) {
+  TaskItemModel.find(queryParam).sort({updateTime: 'desc'}).exec(function (err, list) {
     if (err) {
       logger.error(err)
       return next(DBError())
@@ -141,7 +141,8 @@ exports.listItems = function (req, res, next) {
  */
 exports.finishItem = function (req, res, next) {
   var id = req.body.id;
-  TaskItemModel.update({id: id}, {$set: {finished: true}}).exec(function (err, number) {
+  var groupId = req.body.groupId;
+  TaskItemModel.update({id: id}, {$set: {finished: true, updateTime: Date.now()}}).exec(function (err, number) {
     if (err) {
       logger.error(err)
       return next(new DBError());
@@ -159,7 +160,7 @@ exports.finishItem = function (req, res, next) {
 exports.deleteItem = function (req, res, next) {
   var id = req.body.id;
   var groupId = req.body.groupId;
-  TaskItemModel.update({id: id}, {$set: {deleted: true}}).exec(function (err, number) {
+  TaskItemModel.update({id: id}, {$set: {deleted: true}, updateTime: Date.now()}).exec(function (err, number) {
     if (err) {
       logger.error(err)
       return next(new DBError());

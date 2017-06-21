@@ -24,6 +24,22 @@
       </li>
     </ul>
 
+    <div class="bottom-commands">
+      <el-button type="text" v-if="!isShowFinish" @click="showFinishItems()">显示已完成</el-button>
+      <el-button type="text" v-if="isShowFinish" @click="isShowFinish=false">隐藏已完成</el-button>
+    </div>
+
+    <ul class="item-list finish-list" v-if="isShowFinish">
+      <li v-for="(taskItem, index) in finishItems">
+        <span>{{taskItem.title}} </span>
+        <span><small>[{{taskItem.updateTime | dateTime}}</small>]</span>
+        <span class="finish-check">
+          <el-checkbox v-model="taskItem.finished" @change="changeFinished(taskItem)" title="完成任务"></el-checkbox>
+          <i class="el-icon-close task-delete" @click="deleteTask(taskItem)" title="删除任务"></i>
+        </span>
+      </li>
+    </ul>
+
   </div>
 </template>
 <script>
@@ -34,6 +50,8 @@ export default {
   data () {
     return {
       newTaskItem: '',
+      finishItems: null,
+      isShowFinish: false,
       groupId: this.$route.params['groupId']
     }
   },
@@ -44,7 +62,7 @@ export default {
     this.checkAndQueryItems(this.groupId)
   },
   methods: {
-    ...mapActions(['checkAndQueryItems', 'saveItem', 'deleteItem', 'finishItem']),
+    ...mapActions(['checkAndQueryItems', 'saveItem', 'deleteItem', 'finishItem', 'queryFinishItems']),
     save () {
       this.saveItem({
         groupId: this.groupId,
@@ -67,6 +85,14 @@ export default {
       }, (d) => {
         this.$notify.success('删除失败')
       })
+    },
+    showFinishItems () {
+      this.isShowFinish = true
+      if (!this.finishItems) {
+        this.queryFinishItems(this.groupId).then((d) => {
+          this.finishItems = d
+        })
+      }
     }
   },
   directives: {
@@ -138,10 +164,17 @@ export default {
           margin-left: 2rem;
           cursor: pointer;
         }
-
       }
-
     }
+
+    .bottom-commands {
+      margin-top: 1rem;
+    }
+
+    .finish-list {
+      color: $text-gray-dark;
+    }
+
   }
 
 </style>
