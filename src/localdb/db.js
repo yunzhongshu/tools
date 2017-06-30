@@ -1,13 +1,14 @@
-import treo from 'treo'
+import treo from 'treo/dist/treo'
+import Schema from 'idb-schema'
 
-let scheme = treo.schema()
+let schema = new Schema()
   .version(1)
-  .addStore('taskGroup', {key: 'id'})
+  .addStore('taskGroup', {keyPath: 'id', increment: true})
   .addIndex('byStatus', 'status')
   .version(2)
-  .addStore('taskItem', {key: 'id'})
+  .addStore('taskItem', {keyPath: 'id', increment: true})
   .addIndex('byGroupId', ['groupId', 'status'])
 
-let db = treo('tool', scheme)
-
-export default db
+export const openDB = () => {
+  return treo('tool', schema.version(), schema.callback())
+}

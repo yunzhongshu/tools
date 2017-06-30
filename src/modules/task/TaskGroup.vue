@@ -5,7 +5,7 @@
       <h2>任务分组</h2>
     </header>
     <ul class="group-list">
-      <li v-for="(taskGroup, index) in getGroups" @click="showGroupItem(taskGroup)">
+      <li v-for="(taskGroup, index) in groups" @click="showGroupItem(taskGroup)">
         <icon name="list-ul"></icon>
         <span>{{taskGroup.name}}</span>
         <span class="subNum">{{taskGroup.taskCount}}</span>
@@ -31,48 +31,31 @@
 </template>
 <script>
   import { focus } from '@/assets/js/el-focus'
-  import {mapGetters, mapActions} from 'vuex'
-  import * as groupModel from '@/localdb'
+  import * as groupModel from '@/localdb/model/task-group'
 
   export default {
     data () {
       return {
         isAppendNew: false,
-        newTaskGroup: ''
+        newTaskGroup: '',
+        groups: []
       }
     },
-    computed: {
-      ...mapGetters(['getGroups'])
-    },
     mounted () {
-      this.queryGroups().then(d => {
-      }, d => {
-        this.$notify.error({
-          title: '失败',
-          message: '加载任务分组失败'
-        })
-      })
-      groupModel.saveGroup({
-        id: 1,
-        name: 'test',
-        status: 'enabled'
-      }).then((result) => {
-        console.log(result)
-      })
+      this.queryGroups()
     },
     methods: {
-      ...mapActions(['queryGroups', 'saveGroup']),
+      async queryGroups () {
+        this.groups = await groupModel.queryGroups('enabled')
+      },
       createGroup () {
         this.isAppendNew = !this.isAppendNew
       },
-      save () {
-        this.saveGroup({
-          name: this.newTaskGroup
-        }).then(() => {
-          this.$notify.success('保存成功')
-          this.isAppendNew = false
-        }, (d) => {
-        })
+      async save () {
+        await groupModel.saveGroup(this.newTaskGroup)
+        this.$notify.success('保存成功')
+        this.isAppendNew = false
+        this.queryGroups()
       },
       showGroupItem (group) {
         this.$router.push({name: 'taskItem', params: {groupId: group.id}})

@@ -15,7 +15,7 @@
       </el-input>
     </div>
     <ul class="item-list">
-      <li v-for="(taskItem, index) in getCurrentUnFinishedItems">
+      <li v-for="(taskItem, index) in unfinishedItems">
         <span>{{taskItem.title}}</span>
         <span class="finish-check">
           <el-checkbox v-model="taskItem.finished" @change="changeFinished(taskItem)" title="完成任务"></el-checkbox>
@@ -30,7 +30,7 @@
     </div>
 
     <ul class="item-list finish-list" v-if="isShowFinish">
-      <li v-for="(taskItem, index) in finishItems">
+      <li v-for="(taskItem, index) in finishedItems">
         <span>{{taskItem.title}} </span>
         <span><small>[{{taskItem.updateTime | dateTime}}</small>]</span>
         <span class="finish-check">
@@ -44,55 +44,61 @@
 </template>
 <script>
 import { focus } from '@/assets/js/el-focus'
-import {mapGetters, mapActions} from 'vuex'
+import * as itemModel from '@/localdb/model/task-item'
 
 export default {
   data () {
     return {
       newTaskItem: '',
-      finishItems: null,
+      finishedItems: [],
       isShowFinish: false,
-      groupId: this.$route.params['groupId']
+      groupId: this.$route.params['groupId'],
+      unfinishedItems: []
     }
   },
-  computed: {
-    ...mapGetters(['getCurrentUnFinishedItems'])
-  },
   mounted () {
-    this.checkAndQueryItems(this.groupId)
+    this.queryItems('unfinished')
   },
   methods: {
-    ...mapActions(['checkAndQueryItems', 'saveItem', 'deleteItem', 'finishItem', 'queryFinishItems']),
+    queryItems (status) {
+      itemModel.queryItems(this.groupId, status).then((d) => {
+        switch (status) {
+          case 'unfinished':
+            this.unfinishedItems = d
+            break
+          case 'finished':
+            this.finishedItems = d
+            break
+        }
+      })
+    },
     save () {
-      this.saveItem({
-        groupId: this.groupId,
-        title: this.newTaskItem
-      }).then((d) => {
+      itemModel.saveItem(this.groupId, this.newTaskItem).then((d) => {
         this.$notify.success('保存成功')
-      }, (d) => {
+        this.queryItems('unfinished')
       })
     },
     changeFinished (task) {
-      this.finishItem(task).then((d) => {
-        this.$notify.success('操作成功')
-      }, (d) => {
-        this.$notify.success('操作失败')
-      })
+//      this.finishItem(task).then((d) => {
+//        this.$notify.success('操作成功')
+//      }, (d) => {
+//        this.$notify.success('操作失败')
+//      })
     },
     deleteTask (task) {
-      this.deleteItem(task).then((d) => {
-        this.$notify.success('删除成功')
-      }, (d) => {
-        this.$notify.success('删除失败')
-      })
+//      this.deleteItem(task).then((d) => {
+//        this.$notify.success('删除成功')
+//      }, (d) => {
+//        this.$notify.success('删除失败')
+//      })
     },
     showFinishItems () {
-      this.isShowFinish = true
-      if (!this.finishItems) {
-        this.queryFinishItems(this.groupId).then((d) => {
-          this.finishItems = d
-        })
-      }
+//      this.isShowFinish = true
+//      if (!this.finishItems) {
+//        this.queryFinishItems(this.groupId).then((d) => {
+//          this.finishItems = d
+//        })
+//      }
     }
   },
   directives: {

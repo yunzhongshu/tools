@@ -1,19 +1,19 @@
-import db from '../db'
-import {process} from '../db-util'
-let store = db.store('taskGroup')
+import {openDB} from '../db'
 
-export const queryGroups = (status) => {
-  return new Promise((resolve, reject) => {
-    store.index('byStatus').get(status, (err, results) => {
-      process(resolve, reject, err, results)
-    })
-  })
+export const queryGroups = async (status) => {
+  const db = await openDB()
+  const {byStatus} = db.taskGroup
+  return await byStatus.getAll(status)
 }
 
-export const saveGroup = (group) => {
-  return new Promise((resolve, reject) => {
-    store.put(group, (err, result) => {
-      process(resolve, reject, err, result)
-    })
-  })
+export const saveGroup = async (groupName) => {
+  const db = await openDB()
+  let group = {
+    name: groupName,
+    taskCount: 0,
+    createTime: Date.now(),
+    updateTime: Date.now(),
+    status: 'enabled'
+  }
+  return await db.taskGroup.put(group)
 }
