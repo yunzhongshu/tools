@@ -57,48 +57,48 @@ export default {
     }
   },
   mounted () {
+    if (typeof this.groupId === 'string') {
+      this.groupId = parseInt(this.groupId)
+    }
     this.queryItems('unfinished')
   },
   methods: {
-    queryItems (status) {
-      itemModel.queryItems(this.groupId, status).then((d) => {
-        switch (status) {
-          case 'unfinished':
-            this.unfinishedItems = d
-            break
-          case 'finished':
-            this.finishedItems = d
-            break
-        }
-      })
+    async queryItems (status) {
+      const list = await itemModel.queryItems(this.groupId, status)
+      switch (status) {
+        case 'unfinished':
+          this.unfinishedItems = list
+          break
+        case 'finished':
+          this.finishedItems = list
+          break
+      }
     },
-    save () {
-      itemModel.saveItem(this.groupId, this.newTaskItem).then((d) => {
-        this.$notify.success('保存成功')
-        this.queryItems('unfinished')
-      })
+    async save () {
+      await itemModel.saveItem(this.groupId, this.newTaskItem)
+      this.$notify.success('保存成功')
+      this.queryItems('unfinished')
     },
-    changeFinished (task) {
-//      this.finishItem(task).then((d) => {
-//        this.$notify.success('操作成功')
-//      }, (d) => {
-//        this.$notify.success('操作失败')
-//      })
+    async changeFinished (task) {
+      if (task.status === 'unfinished') {
+        await itemModel.finishItem(task)
+      } else {
+        await itemModel.unfinishItem(task)
+      }
+
+      this.$notify.success('操作成功')
+      this.queryItems('unfinished')
+      this.queryItems('finished')
     },
-    deleteTask (task) {
-//      this.deleteItem(task).then((d) => {
-//        this.$notify.success('删除成功')
-//      }, (d) => {
-//        this.$notify.success('删除失败')
-//      })
+    async deleteTask (task) {
+      await itemModel.deleteItem(task)
+      this.$notify.success('删除成功')
+      this.queryItems('unfinished')
+      this.queryItems('finished')
     },
     showFinishItems () {
-//      this.isShowFinish = true
-//      if (!this.finishItems) {
-//        this.queryFinishItems(this.groupId).then((d) => {
-//          this.finishItems = d
-//        })
-//      }
+      this.isShowFinish = true
+      this.queryItems('finished')
     }
   },
   directives: {

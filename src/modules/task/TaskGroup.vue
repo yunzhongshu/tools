@@ -46,6 +46,7 @@
     },
     methods: {
       async queryGroups () {
+        console.log(await groupModel.queryGroups('enabled'))
         this.groups = await groupModel.queryGroups('enabled')
       },
       createGroup () {

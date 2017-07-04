@@ -3,7 +3,7 @@ import {openDB} from '../db'
 export const queryGroups = async (status) => {
   const db = await openDB()
   const {byStatus} = db.taskGroup
-  return await byStatus.getAll(status)
+  return byStatus.getAll(status)
 }
 
 export const saveGroup = async (groupName) => {
@@ -15,5 +15,12 @@ export const saveGroup = async (groupName) => {
     updateTime: Date.now(),
     status: 'enabled'
   }
-  return await db.taskGroup.put(group)
+  return db.taskGroup.put(group)
+}
+
+export const increTaskCount = async (groupId, incCount = 1) => {
+  const db = await openDB()
+  let group = await db.taskGroup.get(groupId)
+  group.taskCount += incCount
+  return db.taskGroup.put(group)
 }
