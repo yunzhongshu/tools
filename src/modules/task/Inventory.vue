@@ -2,17 +2,17 @@
 
   <div class="task-page">
     <header>
-      <h2>任务分组</h2>
+      <h2>任务清单</h2>
     </header>
     <ul class="group-list">
-      <li v-for="(taskGroup, index) in groups" @click="showGroupItem(taskGroup)">
+      <li v-for="(inventory, index) in inventories" @click="gotoTaskList(inventory.id)">
         <icon name="list-ul"></icon>
-        <span>{{taskGroup.name}}</span>
-        <span class="subNum">{{taskGroup.taskCount}}</span>
+        <span class="group-list-item-name">{{inventory.name}}</span>
+        <span class="subNum">{{inventory.taskCount}}</span>
       </li>
     </ul>
     <div class="create-group">
-      <el-button type="text" class="create-group-btn" @click="createGroup()">
+      <el-button type="text" class="create-group-btn" @click="createInventory()">
         <i class="el-icon-plus" v-if="!isAppendNew"></i>
         <i class="el-icon-minus" v-if="isAppendNew"></i>创建清单
       </el-button>
@@ -20,7 +20,7 @@
                 size="large"
                 v-focus="isAppendNew"
                 placeholder="创建清单"
-                v-model="newTaskGroup">
+                v-model="newInventory">
         <el-button slot="append" icon="plus" @click="save()"></el-button>
       </el-input>
     </div>
@@ -31,35 +31,39 @@
 </template>
 <script>
   import { focus } from '@/assets/js/el-focus'
-  import * as groupModel from '@/localdb/model/task-group'
+  import * as inventoryModel from '@/localdb/model/task/inventory'
 
   export default {
     data () {
       return {
         isAppendNew: false,
-        newTaskGroup: '',
-        groups: []
+        newInventory: '',
+        inventories: []
       }
     },
     mounted () {
-      this.queryGroups()
+      this.queryInventories()
     },
     methods: {
-      async queryGroups () {
-        console.log(await groupModel.queryGroups('enabled'))
-        this.groups = await groupModel.queryGroups('enabled')
+      async queryInventories () {
+        this.inventories = await inventoryModel.queryInventories('enabled')
       },
-      createGroup () {
+      createInventory () {
         this.isAppendNew = !this.isAppendNew
       },
       async save () {
-        await groupModel.saveGroup(this.newTaskGroup)
+        await inventoryModel.insertInventory(this.newInventory)
         this.$notify.success('保存成功')
         this.isAppendNew = false
-        this.queryGroups()
+        this.queryInventories()
       },
-      showGroupItem (group) {
-        this.$router.push({name: 'taskItem', params: {groupId: group.id}})
+      gotoTaskList (inventoryId) {
+        this.$router.push({name: 'TaskList', params: {inventoryId: inventoryId}})
+      },
+      async deleteInventory (inventoryId) {
+        await inventoryModel.deleteInventory(inventoryId)
+        this.$notify.success('删除成功')
+        this.queryInventories()
       }
     },
     directives: {
@@ -67,7 +71,7 @@
     }
   }
 </script>
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss" scoped rel="stylesheet/scss">
   @import "../../assets/css/base.scss";
 
   .task-page{
@@ -91,6 +95,7 @@
         line-height: 4.5rem;
         border-bottom: 1px solid $base-border-color;
         cursor: pointer;
+        position: relative;
 
         &:hover{
           background-color: $theme-color-light;
@@ -100,6 +105,7 @@
           margin-right: 1rem;
           vertical-align: middle;
         }
+
 
         .subNum {
           float: right;

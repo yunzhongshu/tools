@@ -3,12 +3,12 @@ import Schema from 'idb-schema'
 
 let schema = new Schema()
   .version(1)
-  .addStore('taskGroup', {keyPath: 'id', increment: true})
+  .addStore('TaskInventory', {keyPath: 'id', increment: true})
   .addIndex('byStatus', 'status')
   .version(2)
-  .addStore('taskItem', {keyPath: 'id', increment: true})
-  .addIndex('byGroupId', ['groupId', 'status'])
+  .addStore('Task', {keyPath: 'id', increment: true})
+  .addIndex('byInventoryId', ['inventoryId', 'status'])
 
 export const openDB = () => {
-  return treo('tool', schema.version(), schema.callback())
+  return treo('toolkit', schema.version(), schema.callback())
 }

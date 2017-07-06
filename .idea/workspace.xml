@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23bd07fe-d53e-4462-9f20-7413500acf5c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/localdb/db-util.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/localdb/model/task-group.js" afterPath="$PROJECT_DIR$/src/localdb/model/task/inventory.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/localdb/model/task-item.js" afterPath="$PROJECT_DIR$/src/localdb/model/task/task.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/modules/task/TaskGroup.vue" afterPath="$PROJECT_DIR$/src/modules/task/Inventory.vue" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/modules/task/TaskItem.vue" afterPath="$PROJECT_DIR$/src/modules/task/TaskList.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/localdb/model/task-group.js" afterPath="$PROJECT_DIR$/src/localdb/model/task-group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/localdb/model/task-item.js" afterPath="$PROJECT_DIR$/src/localdb/model/task-item.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/task/TaskGroup.vue" afterPath="$PROJECT_DIR$/src/modules/task/TaskGroup.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/task/TaskItem.vue" afterPath="$PROJECT_DIR$/src/modules/task/TaskItem.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/localdb/db.js" afterPath="$PROJECT_DIR$/src/localdb/db.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/router/index.js" afterPath="$PROJECT_DIR$/src/router/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/task/actions.js" afterPath="$PROJECT_DIR$/src/store/task/actions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/task/getters.js" afterPath="$PROJECT_DIR$/src/store/task/getters.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/task/index.js" afterPath="$PROJECT_DIR$/src/store/task/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/task/mutations.js" afterPath="$PROJECT_DIR$/src/store/task/mutations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/task/mutations_types.js" afterPath="$PROJECT_DIR$/src/store/task/mutations_types.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,78 +35,108 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="db.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/localdb/db.js">
+      <file leaf-file-name="task.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/localdb/model/task/task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+            <state relative-caret-position="-95">
+              <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
               <folding>
-                <element signature="e#0#33#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="treo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/treo/dist/treo.js">
+      <file leaf-file-name="inventory.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/localdb/model/task/inventory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21420">
-              <caret line="1428" column="22" lean-forward="false" selection-start-line="1428" selection-start-column="18" selection-end-line="1428" selection-end-column="22" />
+            <state relative-caret-position="170">
+              <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="task-group.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/localdb/model/task-group.js">
+      <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+            <state relative-caret-position="272">
+              <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskGroup.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/task/TaskGroup.vue">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="58" />
+            <state relative-caret-position="102">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="task-item.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/localdb/model/task-item.js">
+      <file leaf-file-name="TaskList.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/modules/task/TaskList.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state relative-caret-position="51">
+              <caret line="58" column="19" lean-forward="false" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#1796#1840#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/router/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="26" lean-forward="false" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+            <state relative-caret-position="221">
+              <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskItem.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/task/TaskItem.vue">
+      <file leaf-file-name="actions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/task/actions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getters.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/task/getters.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/task/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding>
-                <element signature="e#1588#1632#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mutations.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/task/mutations.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,12 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scss</find>
-      <find>node-sass</find>
-      <find>test:</find>
-      <find>sass-loader</find>
-      <find>;</find>
-      <find>Db</find>
       <find>vuex</find>
       <find>create-item</find>
       <find>create-group</find>
@@ -136,10 +168,20 @@
       <find>es201</find>
       <find>es2015</find>
       <find>treo</find>
+      <find>groups</find>
+      <find>in</find>
+      <find>groupId</find>
+      <find>queryInventories</find>
+      <find>insertInventory</find>
+      <find>finishTask</find>
+      <find>queryItems</find>
     </findStrings>
     <replaceStrings>
       <replace>res.send</replace>
       <replace>logger.error</replace>
+      <replace>inventories</replace>
+      <replace>task</replace>
+      <replace>inventoryId</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/build</dir>
@@ -152,13 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/db-init.js" />
-        <option value="$PROJECT_DIR$/server/result.js" />
-        <option value="$PROJECT_DIR$/src/store/index.js" />
-        <option value="$PROJECT_DIR$/server/task.js" />
-        <option value="$PROJECT_DIR$/server/task/task.js" />
-        <option value="$PROJECT_DIR$/server/utils.js" />
-        <option value="$PROJECT_DIR$/server/task/db-item.js" />
         <option value="$PROJECT_DIR$/server/task/db-group.js" />
         <option value="$PROJECT_DIR$/server/task/index.js" />
         <option value="$PROJECT_DIR$/server/route.js" />
@@ -178,12 +213,6 @@
         <option value="$PROJECT_DIR$/src/store/user/mutations_types.js" />
         <option value="$PROJECT_DIR$/src/store/user/mutations.js" />
         <option value="$PROJECT_DIR$/src/store/user/getters.js" />
-        <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/src/store/task/actions.js" />
-        <option value="$PROJECT_DIR$/src/store/task/getters.js" />
-        <option value="$PROJECT_DIR$/src/store/task/index.js" />
-        <option value="$PROJECT_DIR$/src/store/task/mutations.js" />
-        <option value="$PROJECT_DIR$/src/store/task/mutations_types.js" />
         <option value="$PROJECT_DIR$/src/assets/js/vue-utils.js" />
         <option value="$PROJECT_DIR$/src/assets/css/_variables.scss" />
         <option value="$PROJECT_DIR$/server/controller/task.js" />
@@ -198,11 +227,24 @@
         <option value="$PROJECT_DIR$/src/localdb/backup/index.js" />
         <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/localdb/db.js" />
-        <option value="$PROJECT_DIR$/src/modules/task/TaskGroup.vue" />
-        <option value="$PROJECT_DIR$/src/modules/task/TaskItem.vue" />
         <option value="$PROJECT_DIR$/src/localdb/model/task-item.js" />
         <option value="$PROJECT_DIR$/src/localdb/model/task-group.js" />
+        <option value="$PROJECT_DIR$/src/modules/task/TaskItem.vue" />
+        <option value="$PROJECT_DIR$/src/modules/task/TaskGroup.vue" />
+        <option value="$PROJECT_DIR$/src/router/index.js" />
+        <option value="$PROJECT_DIR$/src/localdb/model/task/task-group.js" />
+        <option value="$PROJECT_DIR$/src/localdb/model/task/task-item.js" />
+        <option value="$PROJECT_DIR$/src/modules/task/Inventory.vue" />
+        <option value="$PROJECT_DIR$/src/localdb/db.js" />
+        <option value="$PROJECT_DIR$/src/localdb/model/task/task.js" />
+        <option value="$PROJECT_DIR$/src/store/task/getters.js" />
+        <option value="$PROJECT_DIR$/src/store/task/mutations_types.js" />
+        <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/src/store/task/mutations.js" />
+        <option value="$PROJECT_DIR$/src/store/task/index.js" />
+        <option value="$PROJECT_DIR$/src/store/task/actions.js" />
+        <option value="$PROJECT_DIR$/src/localdb/model/task/inventory.js" />
+        <option value="$PROJECT_DIR$/src/modules/task/TaskList.vue" />
       </list>
     </option>
   </component>
@@ -224,7 +266,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1680" />
-    <option name="height" value="971" />
+    <option name="height" value="957" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -266,6 +308,64 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="task" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="router" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -328,6 +428,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="task" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -398,19 +502,19 @@
     <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v8.1.2/bin/node" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/localdb/model/task" />
+      <recent name="$PROJECT_DIR$/src/localdb" />
+      <recent name="$PROJECT_DIR$/src/localdb/backup" />
+      <recent name="$PROJECT_DIR$/server/test" />
+      <recent name="$PROJECT_DIR$/server/task" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/store/task-local" />
       <recent name="$PROJECT_DIR$/src/store/user" />
       <recent name="$PROJECT_DIR$/server/util" />
       <recent name="$PROJECT_DIR$/src/assets/js" />
       <recent name="$PROJECT_DIR$/src/store/task" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/localdb" />
-      <recent name="$PROJECT_DIR$/src/localdb/backup" />
-      <recent name="$PROJECT_DIR$/server/test" />
-      <recent name="$PROJECT_DIR$/server/task" />
-      <recent name="$PROJECT_DIR$/src/assets/js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -663,12 +767,14 @@
       <workItem from="1498574415416" duration="4481000" />
       <workItem from="1498657590517" duration="3656000" />
       <workItem from="1498744115723" duration="5376000" />
-      <workItem from="1499093860590" duration="5069000" />
+      <workItem from="1499093860590" duration="5370000" />
+      <workItem from="1499179052337" duration="4397000" />
+      <workItem from="1499298823311" duration="2644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189048000" />
+    <option name="totallyTimeSpent" value="196390000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -680,18 +786,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="971" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="957" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19650392" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292011" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36501378" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36501378" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2741752" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.315427" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27283236" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.315427" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -770,13 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/task/mutations_types.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/js/vue-utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -796,20 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2280">
           <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/task/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -834,20 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -862,24 +933,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/task/getters.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/task-local/mutations.js" />
     <entry file="file://$PROJECT_DIR$/src/store/task-local/mutations_types.js" />
     <entry file="file://$PROJECT_DIR$/src/store/task-local/getters.js" />
     <entry file="file://$PROJECT_DIR$/src/store/task-local/index.js" />
-    <entry file="file://$PROJECT_DIR$/src/store/task/mutations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/task-local/actions.js" />
     <entry file="file://$PROJECT_DIR$/src/localdb/backup/task-group.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -893,14 +950,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="44" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/task/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -928,18 +977,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/treo/lib/index.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/treo/lib/idb-store.js" />
-    <entry file="file://$PROJECT_DIR$/src/localdb/db-util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/model/task.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="1" lean-forward="false" selection-start-line="16" selection-start-column="1" selection-end-line="23" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -960,7 +1001,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
+        <state relative-caret-position="612">
           <caret line="36" column="26" lean-forward="false" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
           <folding />
         </state>
@@ -982,55 +1023,124 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/treo/dist/treo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21420">
+        <state relative-caret-position="24276">
           <caret line="1428" column="22" lean-forward="false" selection-start-line="1428" selection-start-column="18" selection-end-line="1428" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/localdb/db-util.js" />
     <entry file="file://$PROJECT_DIR$/src/localdb/db.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#0#33#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/task/TaskGroup.vue">
+    <entry file="file://$PROJECT_DIR$/src/store/task/mutations_types.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="58" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/task/TaskItem.vue">
+    <entry file="file://$PROJECT_DIR$/src/modules/task/Inventory.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="112">
+          <caret line="21" column="34" lean-forward="true" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
           <folding>
-            <element signature="e#1588#1632#0" expanded="true" />
+            <element signature="e#957#1001#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/localdb/model/task-item.js">
+    <entry file="file://$PROJECT_DIR$/src/localdb/model/task/task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state relative-caret-position="-95">
+          <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/localdb/model/task-group.js">
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+        <state relative-caret-position="272">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/task/getters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/task/mutations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/task/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/task/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/localdb/model/task/inventory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/task/TaskList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="58" column="19" lean-forward="false" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+          <folding>
+            <element signature="e#1796#1840#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

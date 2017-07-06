@@ -3,39 +3,44 @@
   <div class="task-page">
     <header>
       <h2>
-        <router-link to="/">返回</router-link>任务清单
+        <router-link to="/">返回</router-link>{{inventory.name}}的列表
+        <el-button-group>
+          <el-button type="primary" icon="edit"></el-button>
+          <el-button type="primary" icon="share"></el-button>
+          <el-button type="primary" icon="delete"></el-button>
+        </el-button-group>
       </h2>
     </header>
     <div class="create-item">
       <el-input size="large"
                 v-focus="true"
                 placeholder="添加任务"
-                v-model="newTaskItem">
+                v-model="newTask">
         <el-button slot="append" icon="plus" @click="save()"></el-button>
       </el-input>
     </div>
     <ul class="item-list">
-      <li v-for="(taskItem, index) in unfinishedItems">
-        <span>{{taskItem.title}}</span>
+      <li v-for="(task, index) in unfinishedTasks">
+        <span>{{task.title}}</span>
         <span class="finish-check">
-          <el-checkbox v-model="taskItem.finished" @change="changeFinished(taskItem)" title="完成任务"></el-checkbox>
-          <i class="el-icon-close task-delete" @click="deleteTask(taskItem)" title="删除任务"></i>
+          <el-checkbox v-model="task.finished" @change="changeFinished(task)" title="完成任务"></el-checkbox>
+          <i class="el-icon-close task-delete" @click="deleteTask(task)" title="删除任务"></i>
         </span>
       </li>
     </ul>
 
     <div class="bottom-commands">
-      <el-button type="text" v-if="!isShowFinish" @click="showFinishItems()">显示已完成</el-button>
+      <el-button type="text" v-if="!isShowFinish" @click="showFinishTasks()">显示已完成</el-button>
       <el-button type="text" v-if="isShowFinish" @click="isShowFinish=false">隐藏已完成</el-button>
     </div>
 
     <ul class="item-list finish-list" v-if="isShowFinish">
-      <li v-for="(taskItem, index) in finishedItems">
-        <span>{{taskItem.title}} </span>
-        <span><small>[{{taskItem.updateTime | dateTime}}</small>]</span>
+      <li v-for="(task, index) in finishedTasks">
+        <span>{{task.title}} </span>
+        <span><small>[{{task.updateTime | dateTime}}</small>]</span>
         <span class="finish-check">
-          <el-checkbox v-model="taskItem.finished" @change="changeFinished(taskItem)" title="完成任务"></el-checkbox>
-          <i class="el-icon-close task-delete" @click="deleteTask(taskItem)" title="删除任务"></i>
+          <el-checkbox v-model="task.finished" @change="changeFinished(task)" title="完成任务"></el-checkbox>
+          <i class="el-icon-close task-delete" @click="deleteTask(task)" title="删除任务"></i>
         </span>
       </li>
     </ul>
@@ -44,61 +49,69 @@
 </template>
 <script>
 import { focus } from '@/assets/js/el-focus'
-import * as itemModel from '@/localdb/model/task-item'
+import * as taskModel from '@/localdb/model/task/task'
+import * as inventoryModel from '@/localdb/model/task/inventory'
 
 export default {
   data () {
     return {
-      newTaskItem: '',
-      finishedItems: [],
+      inventory: {
+        name: '任务列表'
+      },
+      newTask: '',
+      finishedTasks: [],
       isShowFinish: false,
-      groupId: this.$route.params['groupId'],
-      unfinishedItems: []
+      inventoryId: this.$route.params['inventoryId'],
+      unfinishedTasks: []
     }
   },
   mounted () {
-    if (typeof this.groupId === 'string') {
-      this.groupId = parseInt(this.groupId)
+    if (typeof this.inventoryId === 'string') {
+      this.inventoryId = parseInt(this.inventoryId)
     }
-    this.queryItems('unfinished')
+    this.getInventory()
+    this.queryTasks('unfinished')
   },
   methods: {
-    async queryItems (status) {
-      const list = await itemModel.queryItems(this.groupId, status)
+    async getInventory () {
+      this.inventory = await inventoryModel.getInventory(this.inventoryId)
+    },
+    async queryTasks (status) {
+      const list = await taskModel.queryTasks(this.inventoryId, status)
       switch (status) {
         case 'unfinished':
-          this.unfinishedItems = list
+          this.unfinishedTasks = list
           break
         case 'finished':
-          this.finishedItems = list
+          this.finishedTasks = list
           break
       }
     },
     async save () {
-      await itemModel.saveItem(this.groupId, this.newTaskItem)
+      await taskModel.saveTask(this.inventoryId, this.newTask)
       this.$notify.success('保存成功')
-      this.queryItems('unfinished')
+      this.queryTasks('unfinished')
     },
     async changeFinished (task) {
       if (task.status === 'unfinished') {
-        await itemModel.finishItem(task)
+        await taskModel.finishTask(task)
       } else {
-        await itemModel.unfinishItem(task)
+        await taskModel.unfinishTask(task)
       }
 
       this.$notify.success('操作成功')
-      this.queryItems('unfinished')
-      this.queryItems('finished')
+      this.queryTasks('unfinished')
+      this.queryTasks('finished')
     },
     async deleteTask (task) {
-      await itemModel.deleteItem(task)
+      await taskModel.deleteTask(task)
       this.$notify.success('删除成功')
-      this.queryItems('unfinished')
-      this.queryItems('finished')
+      this.queryTasks('unfinished')
+      this.queryTasks('finished')
     },
-    showFinishItems () {
+    showFinishTasks () {
       this.isShowFinish = true
-      this.queryItems('finished')
+      this.queryTasks('finished')
     }
   },
   directives: {
@@ -118,14 +131,21 @@ export default {
 
       h2 {
         position: relative;
+        margin: 0;
+        text-align: center;
+
         a {
           font-size: $font-size-lg;
           float: left;
           position: absolute;
           left: 1rem;
         }
-        margin: 0;
-        text-align: center;
+
+        .el-button-group{
+          position: absolute;
+          right: 0;
+          top: 1rem;
+        }
       }
     }
 
