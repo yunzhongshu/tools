@@ -5,9 +5,8 @@
       <h2>
         <router-link to="/">返回</router-link>{{inventory.name}}的列表
         <el-button-group>
-          <el-button type="primary" icon="edit"></el-button>
-          <el-button type="primary" icon="share"></el-button>
-          <el-button type="primary" icon="delete"></el-button>
+          <!--<el-button type="primary" icon="edit"></el-button>-->
+          <!--<el-button type="primary" icon="delete"></el-button>-->
         </el-button-group>
       </h2>
     </header>
@@ -23,7 +22,7 @@
       <li v-for="(task, index) in unfinishedTasks">
         <span>{{task.title}}</span>
         <span class="finish-check">
-          <el-checkbox v-model="task.finished" @change="changeFinished(task)" title="完成任务"></el-checkbox>
+          <el-checkbox v-model="task.status" @change="changeFinished(task)" title="完成任务" true-label="finished" false-label="unfinished"></el-checkbox>
           <i class="el-icon-close task-delete" @click="deleteTask(task)" title="删除任务"></i>
         </span>
       </li>
@@ -39,7 +38,7 @@
         <span>{{task.title}} </span>
         <span><small>[{{task.updateTime | dateTime}}</small>]</span>
         <span class="finish-check">
-          <el-checkbox v-model="task.finished" @change="changeFinished(task)" title="完成任务"></el-checkbox>
+          <el-checkbox v-model="task.status" @change="changeFinished(task)" title="完成任务" true-label="finished" false-label="unfinished"></el-checkbox>
           <i class="el-icon-close task-delete" @click="deleteTask(task)" title="删除任务"></i>
         </span>
       </li>
@@ -93,7 +92,7 @@ export default {
       this.queryTasks('unfinished')
     },
     async changeFinished (task) {
-      if (task.status === 'unfinished') {
+      if (task.status === 'finished') {
         await taskModel.finishTask(task)
       } else {
         await taskModel.unfinishTask(task)
