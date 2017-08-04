@@ -52,6 +52,9 @@
         this.isAppendNew = !this.isAppendNew
       },
       async save () {
+        if (this.newInventory === '') {
+          return false
+        }
         await inventoryModel.insertInventory(this.newInventory)
         this.$notify.success('保存成功')
         this.isAppendNew = false
