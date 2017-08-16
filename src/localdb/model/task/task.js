@@ -5,7 +5,6 @@ import {increTaskCount} from './inventory'
 const TABLE = 'Task'
 
 export const queryTasks = async (inventoryId, status) => {
-  console.log('inventoryId=%s, status=%s', inventoryId, status)
   const db = await openDB()
   const {byInventoryId} = db[TABLE]
   return byInventoryId.getAll(range([inventoryId, status]), [10])

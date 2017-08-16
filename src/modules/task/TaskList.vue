@@ -18,15 +18,9 @@
         <el-button slot="append" icon="plus" @click="save()"></el-button>
       </el-input>
     </div>
-    <ul class="item-list">
-      <li v-for="(task, index) in unfinishedTasks">
-        <span>{{task.title}}</span>
-        <span class="finish-check">
-          <el-checkbox v-model="task.status" @change="changeFinished(task)" title="完成任务" true-label="finished" false-label="unfinished"></el-checkbox>
-          <i class="el-icon-close task-delete" @click="deleteTask(task)" title="删除任务"></i>
-        </span>
-      </li>
-    </ul>
+    <div class="item-list">
+      <task-list-item v-for="task in unfinishedTasks" :key="task.id" :task="task"></task-list-item>
+    </div>
 
     <div class="bottom-commands">
       <el-button type="text" v-if="!isShowFinish" @click="showFinishTasks()">显示已完成</el-button>
@@ -51,8 +45,12 @@
   import { focus } from '@/assets/js/el-focus'
   import * as taskModel from '@/localdb/model/task/task'
   import * as inventoryModel from '@/localdb/model/task/inventory'
+  import TaskListItem from './sub/TaskListItem.vue'
 
   export default {
+    components: {
+      TaskListItem
+    },
     data () {
       return {
         inventory: {
