@@ -1,17 +1,13 @@
-import treo from 'treo/dist/treo'
-import Schema from 'idb-schema'
+import Dexie from 'dexie'
 
-let schema = new Schema()
-  .version(1)
-  .addStore('TaskInventory', {keyPath: 'id', increment: true})
-  .addIndex('byStatus', 'status')
-  .version(2)
-  .addStore('Task', {keyPath: 'id', increment: true})
-  .addIndex('byInventoryId', ['inventoryId', 'status'])
-  .version(3)
-  .getStore('Task')
-  .addIndex('byInventoryIdAndTime', ['inventoryId', 'status', 'updateTime'])
+const db = new Dexie('toolkit')
+db.version(1).stores({
+  TaskInventory: '++id, status',
+  Task: '++id, inventoryId, status, updateTime'
+})
 
-export const openDB = () => {
-  return treo('toolkit', schema.version(), schema.callback())
-}
+db.open().catch(function(error) {
+  console.error('db open error: ' + error);
+});
+
+export default db

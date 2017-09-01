@@ -1,5 +1,4 @@
-import {openDB} from '../../db'
-import range from 'idb-range'
+import {openDB} from '../db'
 import {increTaskCount} from './inventory'
 
 const TABLE = 'Task'
