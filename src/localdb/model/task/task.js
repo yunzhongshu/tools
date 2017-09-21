@@ -4,7 +4,7 @@ import {increTaskCount} from './inventory'
 const TABLE = 'Task'
 
 export const queryTasks = (inventoryId, status) => {
-  return db[TABLE].where('inventoryId').equals(inventoryId).toArray()
+  return db[TABLE].where('inventoryId').equals(inventoryId).filter(task => task.status === status).toArray()
 }
 
 export const saveTask = async (inventoryId, title) => {
@@ -20,26 +20,25 @@ export const saveTask = async (inventoryId, title) => {
   return promise
 }
 
-// const changeTaskStatus = async (task, newStatus) => {
-//   const db = await openDB()
-//   task.status = newStatus
-//   return db[TABLE].put(task)
-// }
-//
-// export const finishTask = async (task) => {
-//   const promise = changeTaskStatus(task, 'finished')
-//   increTaskCount(task.inventoryId, -1)
-//   return promise
-// }
-//
-// export const unfinishTask = async (task) => {
-//   const promise = changeTaskStatus(task, 'unfinished')
-//   increTaskCount(task.inventoryId)
-//   return promise
-// }
-//
-// export const deleteTask = async (task) => {
-//   const promise = changeTaskStatus(task, 'deleted')
-//   increTaskCount(task.inventoryId, -1)
-//   return promise
-// }
+const changeTaskStatus = (task, newStatus) => {
+  task.status = newStatus
+  return db[TABLE].put(task)
+}
+
+export const finishTask = async (task) => {
+  const promise = changeTaskStatus(task, 'finished')
+  increTaskCount(task.inventoryId, -1)
+  return promise
+}
+
+export const unfinishTask = async (task) => {
+  const promise = changeTaskStatus(task, 'unfinished')
+  increTaskCount(task.inventoryId)
+  return promise
+}
+
+export const deleteTask = async (task) => {
+  const promise = changeTaskStatus(task, 'deleted')
+  increTaskCount(task.inventoryId, -1)
+  return promise
+}

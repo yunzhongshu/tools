@@ -18,7 +18,7 @@ export const insertInventory = (inventoryName) => {
     updateTime: Date.now(),
     status: 'enabled'
   }
-  return db[TABLE].put(group)
+  return db[TABLE].add(group)
 }
 
 export const increTaskCount = async (inventoryId, incCount = 1) => {
