@@ -1,20 +1,16 @@
-import {openDB} from '../../db'
+import db from '../../db'
 
 const TABLE = 'TaskInventory'
 
-export const queryInventories = async (status) => {
-  const db = await openDB()
-  const {byStatus} = db[TABLE]
-  return byStatus.getAll(status)
+export const queryInventories = (status) => {
+  return db[TABLE].where('status').equals(status).toArray()
 }
 
-export const getInventory = async (inventoryId) => {
-  const db = await openDB()
+export const getInventory = (inventoryId) => {
   return db[TABLE].get(inventoryId)
 }
 
-export const insertInventory = async (inventoryName) => {
-  const db = await openDB()
+export const insertInventory = (inventoryName) => {
   let group = {
     name: inventoryName,
     taskCount: 0,
@@ -26,14 +22,12 @@ export const insertInventory = async (inventoryName) => {
 }
 
 export const increTaskCount = async (inventoryId, incCount = 1) => {
-  const db = await openDB()
   let inventory = await db[TABLE].get(inventoryId)
   inventory.taskCount += incCount
   return db[TABLE].put(inventory)
 }
 
 export const deleteInventory = async (inventoryId) => {
-  const db = await openDB()
   let inventory = await db[TABLE].get(inventoryId)
   inventory.status = 'disabled'
   return db[TABLE].put(inventory)
