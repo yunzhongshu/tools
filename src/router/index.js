@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Inventory from '@/modules/task/Inventory'
-import TaskList from '@/modules/task/TaskList'
+import Task from '@/modules/task/Task'
 
 Vue.use(Router)
 
@@ -14,8 +14,8 @@ export default new Router({
     },
     {
       path: '/inventory/:inventoryId',
-      name: 'TaskList',
-      component: TaskList
+      name: 'Task',
+      component: Task
     }
   ]
 })

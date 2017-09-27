@@ -19,7 +19,7 @@
       </el-input>
     </div>
     <div class="item-list">
-      <task-list-item v-for="task in unfinishedTasks" :key="task.id" :task="task"></task-list-item>
+      <task-list-item v-for="task in unfinishedTasks" :key="task.id" :task="task" @refresh="refreshTask"></task-list-item>
     </div>
 
     <div class="bottom-commands">
@@ -28,16 +28,7 @@
       <el-button type="text" v-if="inventoryCanDel()" @click="delInventory">删除清单</el-button>
     </div>
 
-    <ul class="item-list finish-list" v-if="isShowFinish">
-      <li v-for="(task, index) in finishedTasks">
-        <span>{{task.title}} </span>
-        <span><small>[{{task.updateTime | dateTime}}</small>]</span>
-        <span class="finish-check">
-          <el-checkbox v-model="task.status" @change="changeFinished(task)" title="完成任务" true-label="finished" false-label="unfinished"></el-checkbox>
-          <i class="el-icon-close task-delete" @click="deleteTask(task)" title="删除任务"></i>
-        </span>
-      </li>
-    </ul>
+    <finish-task-list v-if="isShowFinish" :list="finishedTasks" @refresh="refreshTask"></finish-task-list>
 
   </div>
 </template>
@@ -46,10 +37,12 @@
   import * as taskModel from '@/localdb/model/task/task'
   import * as inventoryModel from '@/localdb/model/task/inventory'
   import TaskListItem from './sub/TaskListItem.vue'
+  import FinishTaskList from './sub/FinishTaskList.vue'
 
   export default {
     components: {
-      TaskListItem
+      TaskListItem,
+      FinishTaskList
     },
     data () {
       return {
@@ -68,10 +61,13 @@
         this.inventoryId = parseInt(this.inventoryId)
       }
       this.getInventory()
-      this.queryTasks('unfinished')
-      this.queryTasks('finished')
+      this.refreshTask()
     },
     methods: {
+      refreshTask () {
+        this.queryTasks('unfinished')
+        this.queryTasks('finished')
+      },
       async getInventory () {
         this.inventory = await inventoryModel.getInventory(this.inventoryId)
       },

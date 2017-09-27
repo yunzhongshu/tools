@@ -4,7 +4,9 @@ import {increTaskCount} from './inventory'
 const TABLE = 'Task'
 
 export const queryTasks = (inventoryId, status) => {
-  return db[TABLE].where('inventoryId').equals(inventoryId).filter(task => task.status === status).toArray()
+  return db[TABLE].where('inventoryId').equals(inventoryId).filter(task => task.status === status)
+    .reverse()
+    .sortBy('updateTime')
 }
 
 export const saveTask = async (inventoryId, title) => {
@@ -38,7 +40,10 @@ export const unfinishTask = async (task) => {
 }
 
 export const deleteTask = async (task) => {
+  let needDecCount = task.status === 'unfinished'
   const promise = changeTaskStatus(task, 'deleted')
-  increTaskCount(task.inventoryId, -1)
+  if (needDecCount) {
+    increTaskCount(task.inventoryId, -1)
+  }
   return promise
 }

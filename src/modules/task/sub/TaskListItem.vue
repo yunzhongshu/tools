@@ -20,16 +20,13 @@ export default {
       } else {
         await taskModel.unfinishTask(task)
       }
-
       this.$notify.success('操作成功')
-      this.queryTasks('unfinished')
-      this.queryTasks('finished')
+      this.$emit('refresh')
     },
     async deleteTask (task) {
       await taskModel.deleteTask(task)
       this.$notify.success('删除成功')
-      this.queryTasks('unfinished')
-      this.queryTasks('finished')
+      this.$emit('refresh')
     }
   }
 }

@@ -61,7 +61,7 @@
         this.queryInventories()
       },
       gotoTaskList (inventoryId) {
-        this.$router.push({name: 'TaskList', params: {inventoryId: inventoryId}})
+        this.$router.push({name: 'Task', params: {inventoryId: inventoryId}})
       },
       async deleteInventory (inventoryId) {
         await inventoryModel.deleteInventory(inventoryId)
