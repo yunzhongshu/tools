@@ -4,8 +4,6 @@
     <list default="true" id="23bd07fe-d53e-4462-9f20-7413500acf5c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/localdb/db.js" afterPath="$PROJECT_DIR$/src/localdb/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/task/Inventory.vue" afterPath="$PROJECT_DIR$/src/modules/task/Inventory.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,8 +49,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -546,12 +544,12 @@
       <workItem from="1506002050791" duration="3557000" />
       <workItem from="1506505325368" duration="7177000" />
       <workItem from="1506562530911" duration="2874000" />
-      <workItem from="1506645156648" duration="110000" />
+      <workItem from="1506645156648" duration="246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240174000" />
+    <option name="totallyTimeSpent" value="240310000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -908,8 +906,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="153">
+          <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
           <folding />
         </state>
       </provider>
