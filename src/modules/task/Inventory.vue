@@ -5,10 +5,14 @@
       <h2>任务清单</h2>
     </header>
     <ul class="group-list">
+
       <li v-for="(inventory, index) in inventories" @click="gotoTaskList(inventory.id)">
         <icon name="list-ul"></icon>
         <span class="group-list-item-name">{{inventory.name}}</span>
-        <span class="subNum">{{inventory.taskCount}}</span>
+        <span class="subNum">
+          {{inventory.taskCount}}
+        </span>
+
       </li>
     </ul>
     <div class="create-group">

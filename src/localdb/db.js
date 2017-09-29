@@ -1,7 +1,7 @@
 import Dexie from 'dexie'
 
-const db = new Dexie('toolkit1')
-db.version(0.3).stores({
+const db = new Dexie('toolkit')
+db.version(1).stores({
   TaskInventory: '++id, status, taskCount',
   Task: '++id, inventoryId, status, updateTime'
 })
