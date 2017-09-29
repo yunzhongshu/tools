@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import TaskGroup from '@/modules/task/TaskGroup'
-import TaskItem from '@/modules/task/TaskItem'
+import Inventory from '@/modules/task/Inventory'
+import Task from '@/modules/task/Task'
 
 Vue.use(Router)
 
@@ -9,13 +9,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'taskGroup',
-      component: TaskGroup
+      name: 'Inventory',
+      component: Inventory
     },
     {
-      path: '/group/:groupId',
-      name: 'taskItem',
-      component: TaskItem
+      path: '/inventory/:inventoryId',
+      name: 'Task',
+      component: Task
     }
   ]
 })

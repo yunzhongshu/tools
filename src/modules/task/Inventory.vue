@@ -2,17 +2,21 @@
 
   <div class="task-page">
     <header>
-      <h2>任务分组</h2>
+      <h2>任务清单</h2>
     </header>
     <ul class="group-list">
-      <li v-for="(taskGroup, index) in getGroups" @click="showGroupItem(taskGroup)">
+
+      <li v-for="(inventory, index) in inventories" @click="gotoTaskList(inventory.id)">
         <icon name="list-ul"></icon>
-        <span>{{taskGroup.name}}</span>
-        <span class="subNum">{{taskGroup.taskCount}}</span>
+        <span class="group-list-item-name">{{inventory.name}}</span>
+        <span class="subNum">
+          {{inventory.taskCount}}
+        </span>
+
       </li>
     </ul>
     <div class="create-group">
-      <el-button type="text" class="create-group-btn" @click="createGroup()">
+      <el-button type="text" class="create-group-btn" @click="createInventory()">
         <i class="el-icon-plus" v-if="!isAppendNew"></i>
         <i class="el-icon-minus" v-if="isAppendNew"></i>创建清单
       </el-button>
@@ -20,7 +24,7 @@
                 size="large"
                 v-focus="isAppendNew"
                 placeholder="创建清单"
-                v-model="newTaskGroup">
+                v-model="newInventory">
         <el-button slot="append" icon="plus" @click="save()"></el-button>
       </el-input>
     </div>
@@ -31,53 +35,42 @@
 </template>
 <script>
   import { focus } from '@/assets/js/el-focus'
-  import {mapGetters, mapActions} from 'vuex'
-  import localDB from '@/localdb/db'
+  import * as inventoryModel from '@/localdb/model/task/inventory'
 
   export default {
     data () {
       return {
         isAppendNew: false,
-        newTaskGroup: ''
+        newInventory: '',
+        inventories: []
       }
     },
-    computed: {
-      ...mapGetters(['getGroups'])
-    },
     mounted () {
-      this.queryGroups().then(d => {
-      }, d => {
-        this.$notify.error({
-          title: '失败',
-          message: '加载任务分组失败'
-        })
-      })
-//      localDB.openDatabase([
-//        {
-//          name: 'table1',
-//          keyPath: 'id',
-//          updateFunc () {
-//            console.log('success update callback.')
-//          }
-//        }
-//      ])
+      this.queryInventories()
     },
     methods: {
-      ...mapActions(['queryGroups', 'saveGroup']),
-      createGroup () {
+      async queryInventories () {
+        this.inventories = await inventoryModel.queryInventories('enabled')
+      },
+      createInventory () {
         this.isAppendNew = !this.isAppendNew
       },
-      save () {
-        this.saveGroup({
-          name: this.newTaskGroup
-        }).then(() => {
-          this.$notify.success('保存成功')
-          this.isAppendNew = false
-        }, (d) => {
-        })
+      async save () {
+        if (this.newInventory === '') {
+          return false
+        }
+        await inventoryModel.insertInventory(this.newInventory)
+        this.$notify.success('保存成功')
+        this.isAppendNew = false
+        this.queryInventories()
       },
-      showGroupItem (group) {
-        this.$router.push({name: 'taskItem', params: {groupId: group.id}})
+      gotoTaskList (inventoryId) {
+        this.$router.push({name: 'Task', params: {inventoryId: inventoryId}})
+      },
+      async deleteInventory (inventoryId) {
+        await inventoryModel.deleteInventory(inventoryId)
+        this.$notify.success('删除成功')
+        this.queryInventories()
       }
     },
     directives: {
@@ -85,7 +78,7 @@
     }
   }
 </script>
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss" scoped rel="stylesheet/scss">
   @import "../../assets/css/base.scss";
 
   .task-page{
@@ -109,6 +102,7 @@
         line-height: 4.5rem;
         border-bottom: 1px solid $base-border-color;
         cursor: pointer;
+        position: relative;
 
         &:hover{
           background-color: $theme-color-light;
@@ -118,6 +112,7 @@
           margin-right: 1rem;
           vertical-align: middle;
         }
+
 
         .subNum {
           float: right;
