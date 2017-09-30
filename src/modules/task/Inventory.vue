@@ -20,6 +20,7 @@
         <i class="el-icon-plus" v-if="!isAppendNew"></i>
         <i class="el-icon-minus" v-if="isAppendNew"></i>创建清单
       </el-button>
+
       <el-input v-show="isAppendNew"
                 size="large"
                 v-focus="isAppendNew"
@@ -62,6 +63,7 @@
         await inventoryModel.insertInventory(this.newInventory)
         this.$notify.success('保存成功')
         this.isAppendNew = false
+        this.newInventory = ''
         this.queryInventories()
       },
       gotoTaskList (inventoryId) {

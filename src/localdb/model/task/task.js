@@ -4,7 +4,14 @@ import {increTaskCount} from './inventory'
 const TABLE = 'Task'
 
 export const queryTasks = (inventoryId, status) => {
-  return db[TABLE].where('inventoryId').equals(inventoryId).filter(task => task.status === status)
+  return db[TABLE].where('inventoryId').equals(inventoryId)
+    .filter(task => {
+      if (!status) {
+        return true
+      } else {
+        return task.status === status
+      }
+    })
     .reverse()
     .sortBy('updateTime')
 }

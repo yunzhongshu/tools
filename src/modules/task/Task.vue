@@ -26,6 +26,7 @@
       <el-button type="text" v-if="!isShowFinish" @click="showFinishTasks()">显示已完成</el-button>
       <el-button type="text" v-if="isShowFinish" @click="isShowFinish=false">隐藏已完成</el-button>
       <el-button type="text" v-if="inventoryCanDel()" @click="delInventory">删除清单</el-button>
+      <el-button type="text" @click="exportXLS"><icon name="file-excel-o"></icon> 导出</el-button>
     </div>
 
     <finish-task-list v-if="isShowFinish" :list="finishedTasks" @refresh="refreshTask"></finish-task-list>
@@ -38,6 +39,7 @@
   import * as inventoryModel from '@/localdb/model/task/inventory'
   import TaskListItem from './sub/TaskListItem.vue'
   import FinishTaskList from './sub/FinishTaskList.vue'
+  import * as taskExport from './TaskExport'
 
   export default {
     components: {
@@ -87,6 +89,7 @@
           return false
         }
         await taskModel.saveTask(this.inventoryId, this.newTask)
+        this.newTask = ''
         this.$notify.success('保存成功')
         this.queryTasks('unfinished')
       },
@@ -121,6 +124,9 @@
           await inventoryModel.deleteInventory(this.inventoryId)
           this.$router.push('/')
         }).catch(_ => {})
+      },
+      exportXLS () {
+        taskExport.exportOneInventory(this.inventory, this.unfinishedTasks, this.finishedTasks)
       }
     },
     directives: {
