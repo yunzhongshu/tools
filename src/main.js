@@ -25,6 +25,7 @@ import 'vue-awesome/icons/list-ul'
 import 'vue-awesome/icons/bars'
 import 'vue-awesome/icons/chevron-left'
 import 'vue-awesome/icons/file-excel-o'
+import 'vue-awesome/icons/clock-o'
 
 import Icon from 'vue-awesome/components/Icon.vue'
 Vue.component('icon', Icon)

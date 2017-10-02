@@ -1,11 +1,14 @@
 <template>
   <div class="task-list-item">
-    <div class="list-item-content">
+    <div class="task-state">
+      <icon name="clock-o" v-if="task.clockTime"></icon>
+    </div>
+    <div class="task-title">
       {{task.title}}
     </div>
-    <div class="list-cmd-group">
-          <el-checkbox v-model="task.status" @change="changeFinished(task)" title="完成任务" true-label="finished" false-label="unfinished"></el-checkbox>
-          <i class="el-icon-close task-delete" @click="deleteTask(task)" title="删除任务"></i>
+    <div class="task-command">
+      <el-checkbox v-model="task.status" @change="changeFinished(task)" title="完成任务" true-label="finished" false-label="unfinished"></el-checkbox>
+      <i class="el-icon-delete task-delete" @click="deleteTask(task)" title="删除任务"></i>
     </div>
   </div>
 </template>
@@ -34,32 +37,53 @@ export default {
 <style lang="scss" scoped rel="stylesheet/scss">
   @import "../../../assets/css/base.scss";
 
+
   .task-list-item {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: left;
-    line-height: 4.5rem;
+    display: table;
+    width: 100%;
+    min-height: 4.5rem;
     border-bottom: 1px solid $base-border-color;
 
-    div {
-      display: inline;
+    i, svg {
+      font-size: 16px;
+      color: $text-gray;
+      cursor: pointer;
     }
 
-    .fa-icon {
-      margin-right: 1rem;
-      vertical-align: middle;
-    }
+    &:hover{
+      background-color: $theme-color-light;
 
-    .list-cmd-group {
-      float: right;
-      margin-right: 1rem;
-
-      .task-delete {
-        color: $text-gray;
-        margin-left: 2rem;
-        cursor: pointer;
+      i, svg {
+        color: $text-gray-dark;
       }
     }
+
+    .task-state, .task-title, .task-command {
+      display: table-cell;
+    }
+
+    .task-state {
+      width: 2rem;
+      text-align: left;
+      vertical-align: middle;
+    }
+    .task-title {
+      text-align: left;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+    .task-command {
+      width: 6rem;
+      text-align: center;
+      vertical-align: middle;
+
+      i {
+        margin-left: 1.5rem;
+      }
+    }
+
   }
+
+
 
 </style>

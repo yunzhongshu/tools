@@ -36,6 +36,7 @@ export const exportOneInventory = (inventory, unFinishedTasks, finishedTasks) =>
     taskDataList.push(convertTaskToArray(task))
   })
 
+  taskDataList.push('')
   taskDataList.push(['已完成'])
   taskDataList.push(COLUMNS.map(column => column.desc))
   finishedTasks.forEach(task => {
