@@ -27,10 +27,12 @@ html,body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $base-text-color;
   font-size: $font-size-base;
 }
 
-
+a{
+  text-decoration: none;
+}
 
 </style>

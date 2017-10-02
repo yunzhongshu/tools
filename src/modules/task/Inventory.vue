@@ -1,9 +1,9 @@
 <template>
 
   <div class="task-page">
-    <header>
-      <h2>任务清单</h2>
-    </header>
+    <tool-header title="任务清单">
+      <router-link to="/" slot="headLeft">首页</router-link>
+    </tool-header>
     <ul class="group-list">
 
       <li v-for="(inventory, index) in inventories" @click="gotoTaskList(inventory.id)">
@@ -37,8 +37,12 @@
 <script>
   import { focus } from '@/assets/js/el-focus'
   import * as inventoryModel from '@/localdb/model/task/inventory'
+  import ToolHeader from '@/components/ToolHeader'
 
   export default {
+    components: {
+      ToolHeader
+    },
     data () {
       return {
         isAppendNew: false,

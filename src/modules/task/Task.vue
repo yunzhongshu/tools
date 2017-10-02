@@ -1,15 +1,10 @@
 <template>
 
   <div class="task-page">
-    <header>
-      <h2>
-        <router-link to="/">返回</router-link>{{inventory.name | maxLen(15)}}的列表
-        <el-button-group>
-          <!--<el-button type="primary" icon="edit"></el-button>-->
-          <!--<el-button type="primary" icon="delete"></el-button>-->
-        </el-button-group>
-      </h2>
-    </header>
+
+    <tool-header :title="inventory.name+'的列表'">
+      <router-link to="/inventory" slot="headLeft">返回</router-link>
+    </tool-header>
     <div class="create-item">
       <el-input size="large"
                 v-focus="true"
@@ -40,9 +35,11 @@
   import TaskListItem from './sub/TaskListItem.vue'
   import FinishTaskList from './sub/FinishTaskList.vue'
   import * as taskExport from './TaskExport'
+  import ToolHeader from '@/components/ToolHeader'
 
   export default {
     components: {
+      ToolHeader,
       TaskListItem,
       FinishTaskList
     },
