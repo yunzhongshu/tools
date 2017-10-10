@@ -7,7 +7,8 @@
   </div>
 </template>
 <script>
-import utils from '@/assets/js/utils'
+// import utils from '@/assets/js/utils'
+import * as myUtils from 'my-es6-utils'
 import TaskListItem from './TaskListItem.vue'
 
 export default {
@@ -45,11 +46,11 @@ export default {
         }
         let index = this.listDayMap[day].length
         this.$set(this.listDayMap[day], index, task)
-        console.log(this.listDayMap[day])
       })
     },
     getDay (date) {
-      return utils.formatDate('yyyy年MM月dd日', new Date(date))
+      console.log(myUtils)
+      return myUtils.formatDate('yyyy年MM月dd日', new Date(date))
     },
     refreshTask () {
       this.$emit('refresh')

@@ -2,7 +2,7 @@
   <div>
     <h1>e工具</h1>
     <el-row :gutter="20">
-      <el-col :span="8" v-for="tool in tools" :key="tool.title">
+      <el-col :xs="{span:24}" :md="{span:8}" v-for="tool in tools" :key="tool.title">
         <router-link to="/inventory">
           <el-card>
             <h2>{{tool.title}}</h2>
@@ -20,7 +20,7 @@ export default {
       tools: [
         {
           title: '任务清单',
-          desc: '按清单记录代办的各种任务， 可进行导出',
+          desc: '按清单记录代办的各种任务，浏览器本地存储，可进行导出',
           url: '/inventory'
         }
       ]

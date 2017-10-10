@@ -125,6 +125,13 @@ var UTILS = {
       }
     }
     return fmt
+  },
+  maxLength (value, len) {
+    if (value.length <= len) {
+      return value
+    } else {
+      return value.substr(0, len) + '...'
+    }
   }
 }
 

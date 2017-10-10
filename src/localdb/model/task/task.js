@@ -16,6 +16,10 @@ export const queryTasks = (inventoryId, status) => {
     .sortBy('updateTime')
 }
 
+export const getTask = (taskId) => {
+  return db[TABLE].get(taskId)
+}
+
 export const saveTask = async (inventoryId, title) => {
   let task = {
     title: title,

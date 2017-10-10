@@ -5,6 +5,9 @@
     </div>
     <div class="task-title">
       {{task.title}}
+      <span class="task-detail-btn">
+        <router-link :to="{path: '/task/' + task.id}">详情</router-link>
+      </span>
     </div>
     <div class="task-command">
       <el-checkbox v-model="task.status" @change="changeFinished(task)" title="完成任务" true-label="finished" false-label="unfinished"></el-checkbox>
@@ -56,6 +59,10 @@ export default {
       i, svg {
         color: $text-gray-dark;
       }
+
+      .task-detail-btn {
+        display: inline;
+      }
     }
 
     .task-state, .task-title, .task-command {
@@ -80,6 +87,14 @@ export default {
       i {
         margin-left: 1.5rem;
       }
+    }
+
+    .task-detail-btn {
+      display: none;
+    }
+
+    a {
+      color: $base-color;
     }
 
   }
