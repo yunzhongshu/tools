@@ -4,7 +4,7 @@
 
 <a href="http://www.google.com" target="_blank">google</a>
 
-[google](http://www.google.com" target="_blank)
+[google]("http://www.google.com" target="_blank")
 
 ## Build Setup
 
