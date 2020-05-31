@@ -2,6 +2,8 @@
 
 > my tools by vue
 
+<a href="http://www.google.com" target="_blank">google</a>
+
 ## Build Setup
 
 ``` bash
