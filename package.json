@@ -16,7 +16,7 @@
   "dependencies": {
     "animate.css": "^3.5.2",
     "bluebird": "^3.5.0",
-    "bootstrap-vue": "^0.14.0",
+    "bootstrap-vue": "^2.0.0",
     "bunyan": "^1.8.10",
     "dexie": "^1.5.1",
     "dtrace-provider": "^0.8.3",
